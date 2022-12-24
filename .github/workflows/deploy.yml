@@ -1,0 +1,35 @@
+name: Lint, Test and Deploy project
+on: [push, workflow_dispatch]
+jobs:
+  lint:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Get Code
+        uses: actions/checkout@v3
+      - name: Install NodeJs
+        uses: actions/setup-nose@v3
+      - name: Run Lint
+        run: npm run lint
+  test:
+    needs: lint
+    runs-on: ubuntu-latest
+    steps:
+      - name: Get Code
+        uses: actions/checkout@v3
+      - name: Install NodeJs
+        uses: actions/setup-nose@v3
+      - name: Run test
+        run: npm test
+  deploy:
+    needs: test
+    runs-on: ubuntu-latest
+    steps:
+      - name: Get Code
+        uses: actions/checkout@v3
+      - name: Install NodeJs
+        uses: actions/setup-nose@v3
+      - name: Build Project
+        run: npm run build
+      - name: Deploy Project
+        run: echo "Deploy..."
+    
