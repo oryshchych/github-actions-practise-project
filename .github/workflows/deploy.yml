@@ -17,7 +17,7 @@ jobs:
       - name: Get Code
         uses: actions/checkout@v3
       - name: Install NodeJs
-        uses: actions/setup-nose@v3
+        uses: actions/setup-node@v3
       - name: Run test
         run: npm test
   deploy:
